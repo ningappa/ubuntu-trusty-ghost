@@ -39,7 +39,7 @@ RUN cd $(npm root -g)/npm \
 	
 ADD uploads/html /var/www/html
 
-RUN apt-get install -y git apache2 mysql-server mysql-client wget unzip supervisor && \
+RUN apt-get install -y git apache2 php5-cli php5-mysql php5-gd php5-curl php5-sqlite libapache2-mod-php5 mysql-server mysql-client wget unzip supervisor && \
 	  apt-get clean && \
 	  rm -r /var/lib/apt/lists/*
 	
@@ -76,6 +76,7 @@ ADD uploads/supervisord-mysqld.conf /etc/supervisor/conf.d/supervisord-mysqld.co
 ADD uploads/supervisord-ghost.conf /etc/supervisor/conf.d/supervisord-ghost.conf
 
 RUN chown -R www-data:www-data /var/www/
+RUN echo "Listen 2083" >> /etc/apache2/ports.conf
 
 #Environment variables to configure php
 ENV PHP_UPLOAD_MAX_FILESIZE 10M
