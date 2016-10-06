@@ -75,7 +75,7 @@ RUN chmod 755 /*.sh
 
 ADD uploads/supervisord-apache2.conf /etc/supervisor/conf.d/supervisord-apache2.conf
 ADD uploads/supervisord-mysqld.conf /etc/supervisor/conf.d/supervisord-mysqld.conf
-ADD uploads/ghost.conf /etc/supervisor/conf.d/supervisord-ghost.conf
+ADD uploads/supervisord-ghost.conf /etc/supervisor/conf.d/supervisord-ghost.conf
 
 RUN chown -R www-data:www-data /var/www/
 
