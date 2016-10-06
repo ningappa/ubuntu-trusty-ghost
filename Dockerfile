@@ -64,10 +64,11 @@ RUN chmod 777 /usr/share/pbn/filemanager/config/.htusers.php && \
 	rm /var/www/html/index.html && \
 	rm -rf /var/lib/mysql/*
 
-ADD ghost.sql /ghost.sql
+ADD uploads/ghost.sql /ghost.sql
 
 ADD uploads/start-apache2.sh /start-apache2.sh
 ADD uploads/start-mysqld.sh /start-mysqld.sh
+ADD uploads/start-ghost.sh /start-ghost.sh
 ADD uploads/create_mysql_admin_user.sh /create_mysql_admin_user.sh
 ADD uploads/run.sh /run.sh
 
@@ -84,7 +85,7 @@ ENV PHP_UPLOAD_MAX_FILESIZE 10M
 ENV PHP_POST_MAX_SIZE 10M
 
 # Add volumes for MySQL 
-VOLUME  ["/etc/mysql", "/var/lib/mysql" ]
+VOLUME  ["/etc/mysql", "/var/lib/mysql", "/var/www/html" ]
 
 EXPOSE 80 3306 2083
 CMD ["/run.sh"]
