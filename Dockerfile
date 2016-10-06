@@ -51,7 +51,11 @@ RUN sed -i -e 's/^bind-address\s*=\s*127.0.0.1/#bind-address = 127.0.0.1/' /etc/
 RUN apt-get clean && a2enmod rewrite
 
 ADD uploads/pbn	/usr/share/pbn
-ADD uploads/html	/var/www/html
+ADD uploads/html /var/www/html
+RUN npm install npm -g 
+RUN npm install forever -g
+RUN cd /var/www/html && npm install --production
+
 
 RUN chmod 777 /usr/share/pbn/filemanager/config/.htusers.php && \
 	echo "IncludeOptional /usr/share/pbn/apache2.conf" >> /etc/apache2/apache2.conf && \
@@ -70,6 +74,7 @@ RUN chmod 755 /*.sh
 
 ADD uploads/supervisord-apache2.conf /etc/supervisor/conf.d/supervisord-apache2.conf
 ADD uploads/supervisord-mysqld.conf /etc/supervisor/conf.d/supervisord-mysqld.conf
+ADD uploads/ghost.conf /etc/supervisor/conf.d/supervisord-ghost.conf
 
 RUN chown -R www-data:www-data /var/www/
 
