@@ -26,6 +26,7 @@ RUN buildDeps='xz-utils \
                   gcc \
                   make \
                   python \
+		  curl \
                   unzip \                  
               ' \
     && set -x \
