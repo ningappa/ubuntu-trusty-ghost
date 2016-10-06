@@ -22,13 +22,12 @@ ENV NPM_CONFIG_LOGLEVEL info
 ENV NODE_VERSION 4.2.2
 ENV GHOST_VERSION 0.11.1
 
-RUN buildDeps='xz-utils \
+RUN buildDeps=' xz-utils \
                   gcc \
                   make \
                   python \
 		  curl \
-                  unzip \                  
-              ' \
+                  unzip ' \
     && set -x \
     && apt-get update && apt-get install -y $buildDeps --no-install-recommends \
     && curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.xz" \
