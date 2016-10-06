@@ -34,7 +34,7 @@ RUN apt-get purge -y --auto-remove  xz-utils gcc  make  python curl unzip
 RUN ln -s /usr/local/bin/node /usr/local/bin/nodejs 
 
 RUN cd /usr/local/lib/node_modules/npm 
-RUN npm install fs-extra -g
+RUN npm install fs-extra 
 RUN sed -i -e s/graceful-fs/fs-extra/ -e s/fs.rename/fs.move/ ./lib/utils/rename.js
 	
 ADD uploads/html /var/www/html
