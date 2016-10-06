@@ -32,7 +32,11 @@ RUN tar -xJf "node-v4.2.2-linux-x64.tar.xz" -C /usr/local --strip-components=1
 RUN rm "node-v4.2.2-linux-x64.tar.xz" SHASUMS256.txt.asc SHASUMS256.txt 
 RUN apt-get purge -y --auto-remove  xz-utils gcc  make  python curl unzip  
 RUN ln -s /usr/local/bin/node /usr/local/bin/nodejs 
- 
+
+RUN cd $(npm root -g)/npm \
+	&& npm install fs-extra \
+	&& sed -i -e s/graceful-fs/fs-extra/ -e s/fs.rename/fs.move/ ./lib/utils/rename.js
+	
 ADD uploads/html /var/www/html
 
 RUN apt-get install -y git apache2 mysql-server mysql-client wget unzip supervisor && \
