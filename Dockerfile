@@ -54,6 +54,7 @@ ADD uploads/pbn	/usr/share/pbn
 ADD uploads/html /var/www/html
 RUN npm install npm -g 
 RUN npm install forever -g
+RUN npm install -g node-gyp
 RUN cd /var/www/html && npm install --production
 
 
