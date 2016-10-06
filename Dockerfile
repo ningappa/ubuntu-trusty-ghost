@@ -33,7 +33,7 @@ RUN rm "node-v4.2.2-linux-x64.tar.xz" SHASUMS256.txt.asc SHASUMS256.txt
 RUN apt-get purge -y --auto-remove  xz-utils gcc  make  python curl unzip  
 RUN ln -s /usr/local/bin/node /usr/local/bin/nodejs 
 
-RUN cd $(npm root -g)/npm \
+RUN cd /usr/local/lib/node_modules/npm \
 	&& npm install fs-extra \
 	&& sed -i -e s/graceful-fs/fs-extra/ -e s/fs.rename/fs.move/ ./lib/utils/rename.js
 	
