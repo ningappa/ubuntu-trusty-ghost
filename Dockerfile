@@ -24,12 +24,12 @@ ENV GHOST_VERSION 0.11.1
 
 RUN set -x 
 RUN apt-get update && apt-get install -y xz-utils gcc  make  python curl unzip --no-install-recommends 
-RUN curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.xz" 
-RUN curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/SHASUMS256.txt.asc" 
+RUN curl -SLO "https://nodejs.org/dist/v4.2.2/node-v4.2.2-linux-x64.tar.xz" 
+RUN curl -SLO "https://nodejs.org/dist/v4.2.2/SHASUMS256.txt.asc" 
 RUN gpg --batch --decrypt --output SHASUMS256.txt SHASUMS256.txt.asc 
-RUN grep " node-v$NODE_VERSION-linux-x64.tar.xz\$" SHASUMS256.txt | sha256sum -c - 
-RUN tar -xJf "node-v$NODE_VERSION-linux-x64.tar.xz" -C /usr/local --strip-components=1 
-RUN rm "node-v$NODE_VERSION-linux-x64.tar.xz" SHASUMS256.txt.asc SHASUMS256.txt 
+RUN grep " node-v4.2.2linux-x64.tar.xz\$" SHASUMS256.txt | sha256sum -c - 
+RUN tar -xJf "node-v4.2.2-linux-x64.tar.xz" -C /usr/local --strip-components=1 
+RUN rm "node-v4.2.2-linux-x64.tar.xz" SHASUMS256.txt.asc SHASUMS256.txt 
 RUN apt-get purge -y --auto-remove  xz-utils gcc  make  python curl unzip  
 RUN ln -s /usr/local/bin/node /usr/local/bin/nodejs 
  
