@@ -54,7 +54,8 @@ RUN chmod 777 /usr/share/pbn/filemanager/config/.htusers.php && \
 	echo "IncludeOptional /usr/share/pbn/apache2.conf" >> /etc/apache2/apache2.conf && \
 	echo "ServerName localhost" >> /etc/apache2/apache2.conf && \
 	rm /var/www/html/index.html && \
-	rm -rf /var/lib/mysql/*
+	rm -rf /var/lib/mysql/* && \
+	rm -rf /etc/apache2/sites-enabled/* 
 
 ADD uploads/ghost.sql /ghost.sql
 
