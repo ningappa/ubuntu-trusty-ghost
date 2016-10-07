@@ -74,3 +74,5 @@ echo "MySQL user 'root' has no password but only allows local connections"
 echo "========================================================================"
 
 mysqladmin -uroot shutdown
+
+NODE_ENV=production forever start /var/www/html/index.js
