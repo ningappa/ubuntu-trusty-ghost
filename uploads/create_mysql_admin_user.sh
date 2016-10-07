@@ -35,7 +35,7 @@ mysql -uroot -e "CREATE DATABASE $DBNAME"
 mysql -uroot -e "CREATE USER '$DBUSER'@'%' IDENTIFIED BY '$DBPASS'"
 mysql -uroot -e "GRANT ALL PRIVILEGES ON $DBNAME.* TO '$DBUSER'@'%' WITH GRANT OPTION"
 
-replace SITENAME ${VIRTUAL_DOMAIN:-'testuser'} -- /var/www/html/config.js
+replace SITENAME ${VIRTUAL_DOMAIN:-'testsite'} -- /var/www/html/config.js
 replace DBUSER $DBUSER -- /var/www/html/config.js
 replace DBPASSWORD $DBPASS -- /var/www/html/config.js
 replace DBNAME $DBNAME -- /var/www/html/config.js 
@@ -49,10 +49,15 @@ replace FILEMANAGERPASSWORD $(echo -n ${FILEMANAGERPASSWORD:-'testpassword'} | m
 
 replace MAIL $USER_EMAIL -- /var/www/html/config.js
 
+replace USER_USERNAME_SMALL $(echo $WP_PASS | awk '{print tolower($0)}') -- /ghost.sql 
 replace USER_USERNAME $WP_USER -- /ghost.sql 
 replace USER_EMAIL $USER_EMAIL -- /ghost.sql 
 replace PASSWORDHERE $WP_PASS -- /ghost.sql 
+replace TITLE ${VIRTUAL_DOMAIN:-'testsite'} -- /ghost.sql 
+
 replace USER_USERNAME_SMALL $(echo $WP_PASS | awk '{print tolower($0)}')
+
+
 mysql -uroot $DBNAME < ghost.sql
 
 rm ghost.sql;
