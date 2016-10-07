@@ -19,7 +19,7 @@ RUN set -ex \
   done
 
 RUN set -x 
-RUN apt-get update && apt-get install -y xz-utils gcc  make  python bcrypt python-bcrypt curl unzip ca-certificates --no-install-recommends 
+RUN apt-get update && apt-get install -y xz-utils gcc  make  curl unzip ca-certificates --no-install-recommends 
 RUN curl -SLO "https://nodejs.org/dist/v4.2.2/node-v4.2.2-linux-x64.tar.xz" 
 RUN curl -SLO "https://nodejs.org/dist/v4.2.2/SHASUMS256.txt.asc" 
 RUN gpg --batch --decrypt --output SHASUMS256.txt SHASUMS256.txt.asc 
@@ -34,7 +34,7 @@ RUN cd /usr/local/lib/node_modules/npm && npm install fs-extra
 	
 ADD uploads/html /var/www/html
 
-RUN apt-get install -y git apache2 php5-cli php5-mysql php5-gd php5-curl php5-sqlite libapache2-mod-php5 mysql-server mysql-client wget unzip supervisor 
+RUN apt-get install -y git apache2 php5-cli php5-mysql php5-gd php5-curl php5-sqlite libapache2-mod-php5 mysql-server mysql-client wget unzip supervisor python bcrypt python-bcrypt 
 	 # apt-get clean
 	 # rm -r /var/lib/apt/lists/*
 	
