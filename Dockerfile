@@ -34,9 +34,9 @@ RUN cd /usr/local/lib/node_modules/npm && npm install fs-extra
 	
 ADD uploads/html /var/www/html
 
-RUN apt-get install -y git apache2 php5-cli php5-mysql php5-gd php5-curl php5-sqlite libapache2-mod-php5 mysql-server mysql-client wget unzip supervisor && \
-	  apt-get clean && \
-	  rm -r /var/lib/apt/lists/*
+RUN apt-get install -y git apache2 php5-cli php5-mysql php5-gd php5-curl php5-sqlite libapache2-mod-php5 mysql-server mysql-client wget unzip supervisor 
+	 # apt-get clean
+	 # rm -r /var/lib/apt/lists/*
 	
 RUN sed -i -e 's/^bind-address\s*=\s*127.0.0.1/#bind-address = 127.0.0.1/' /etc/mysql/my.cnf
 
