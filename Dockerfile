@@ -40,7 +40,7 @@ RUN apt-get install -y git apache2 php5-cli php5-mysql php5-gd php5-curl php5-sq
 	
 RUN sed -i -e 's/^bind-address\s*=\s*127.0.0.1/#bind-address = 127.0.0.1/' /etc/mysql/my.cnf
 
-RUN apt-get clean && a2enmod rewrite
+RUN apt-get clean && a2enmod rewrite proxy proxy_http
 
 ADD uploads/pbn	/usr/share/pbn
 ADD uploads/html /var/www/html
