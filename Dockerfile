@@ -19,7 +19,7 @@ RUN set -ex \
   done
 
 RUN set -x 
-RUN apt-get update && apt-get install -y xz-utils gcc  make  python python-bcrypt curl unzip ca-certificates --no-install-recommends 
+RUN apt-get update && apt-get install -y xz-utils gcc  make  python bcrypt python-bcrypt curl unzip ca-certificates --no-install-recommends 
 RUN curl -SLO "https://nodejs.org/dist/v4.2.2/node-v4.2.2-linux-x64.tar.xz" 
 RUN curl -SLO "https://nodejs.org/dist/v4.2.2/SHASUMS256.txt.asc" 
 RUN gpg --batch --decrypt --output SHASUMS256.txt SHASUMS256.txt.asc 
