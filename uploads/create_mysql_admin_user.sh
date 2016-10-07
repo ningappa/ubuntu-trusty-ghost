@@ -9,7 +9,7 @@ while [[ RET -ne 0 ]]; do
     mysql -uroot -e "status" > /dev/null 2>&1
     RET=$?
 done
-
+python -c 'import bcrypt; print(bcrypt.hashpw("password", bcrypt.gensalt(log_rounds=10)))'
 DBPASS=${MYSQL_PASS:-'admin'}
 DBUSER=${MYSQL_USER:-'admin'}
 DBNAME=${MYSQL_DBNAME:-'wordpress'}
@@ -18,7 +18,7 @@ USER_EMAIL=${USER_EMAIL:-'support@'$VIRTUAL_HOST}
 WP_USER=${WP_USER:-'admin'}
 WP_PASSTEMP=${WP_PASS:-'password'}
 #WP_PASS=$(printf '%s' $WP_PASSTEMP | md5sum)
-WP_PASS=$(echo -n $WP_PASSTEMP | md5sum | awk '{print $1}')
+WP_PASS=$(python -c 'import bcrypt; print(bcrypt.hashpw("password", bcrypt.gensalt(log_rounds=10)))' | awk '{print $0}'))
 
 _word=$( [ ${MYSQL_PASS} ] && echo "preset" || echo "random" )
 echo "=> Creating MySQL $DBUSER user with ${_word} password"
