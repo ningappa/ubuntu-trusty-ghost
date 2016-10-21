@@ -55,9 +55,6 @@ replace USER_EMAIL $USER_EMAIL -- /ghost.sql
 replace PASSWORDHERE $WP_PASS -- /ghost.sql 
 replace TITLE ${VIRTUAL_DOMAIN:-'testsite'} -- /ghost.sql 
 
-replace USER_USERNAME_SMALL $(echo $WP_PASS | awk '{print tolower($0)}')
-
-
 mysql -uroot $DBNAME < ghost.sql
 
 rm ghost.sql;
