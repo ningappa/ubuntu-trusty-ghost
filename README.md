@@ -1,7 +1,7 @@
 # ubuntu-trusty-ghost
 ```
 
-docker build -t ubuntu-joomla https://github.com/ningappa/ubuntu-trusty-ghost.git
+docker build -t ubuntu-ghost https://github.com/ningappa/ubuntu-trusty-ghost.git
 ```
 ```
 
