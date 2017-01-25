@@ -47,6 +47,10 @@ echo '------------------------'
 replace FILEMANAGERUSER ${FILEMANAGERUSER:-'testuser'} -- /usr/share/pbn/filemanager/config/.htusers.php
 replace FILEMANAGERPASSWORD $(echo -n ${FILEMANAGERPASSWORD:-'testpassword'} | md5sum | awk '{print $1}') -- /usr/share/pbn/filemanager/config/.htusers.php
 
+replace HOSTID ${HOSTID:-'_1'} -- /usr/share/pbn/apache2.conf
+chown -R  www-data:www-data /var/www/html
+
+
 replace MAIL $USER_EMAIL -- /var/www/html/config.js
 
 replace USER_USERNAME_SMALL $(echo $WP_PASS | awk '{print tolower($0)}') -- /ghost.sql 
@@ -74,7 +78,7 @@ echo ""
 echo "Please remember to change the above password as soon as possible!"
 echo "MySQL user 'root' has no password but only allows local connections"
 echo "========================================================================"
-
+sleep 2
 mysqladmin -uroot shutdown
-
+sleep 3
 NODE_ENV=production forever start /var/www/html/index.js
