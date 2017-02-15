@@ -18,7 +18,7 @@ USER_EMAIL=${USER_EMAIL:-'support@'$VIRTUAL_HOST}
 WP_USER=${WP_USER:-'admin'}
 WP_PASSTEMP=${WP_PASS:-'password'}
 #WP_PASS=$(printf '%s' $WP_PASSTEMP | md5sum)
-WP_PASS=$(python -c 'import bcrypt; print(bcrypt.hashpw("$WP_PASSTEMP", bcrypt.gensalt(log_rounds=10)))' | awk '{print $0}')
+WP_PASS=$(python -c 'import bcrypt; import os; print(bcrypt.hashpw( os.environ["WP_PASS"], bcrypt.gensalt(log_rounds=10)))' | awk '{print $0}')
 
 _word=$( [ ${MYSQL_PASS} ] && echo "preset" || echo "random" )
 echo "=> Creating MySQL $DBUSER user with ${_word} password"
